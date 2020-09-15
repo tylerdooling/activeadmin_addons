@@ -58,9 +58,9 @@ module ActiveAdminAddons
     def selected_collection
       @selected_collection ||= begin
         if active_record_relation?(collection)
-          collection.model.where(id: input_value)
+          collection.model.where(collection.model.primary_key => input_value)
         else
-          method_model.where(id: input_value)
+          method_model.where(method_model.primary_key => input_value)
         end
       end
     end
